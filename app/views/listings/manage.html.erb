@@ -1,0 +1,11 @@
+<% provide(:title, 'Manage Listings') %>
+
+<h1>Manage Listings</h1>
+
+<% if @listings.empty? %>
+	<h2>You have not listed anything yet.</h2>
+<% else %>
+	<div id="listings">
+		<%= render 'my_listings' %>
+	</div>
+<% end %>

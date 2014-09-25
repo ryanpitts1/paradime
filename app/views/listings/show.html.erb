@@ -1,0 +1,59 @@
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".fancybox").fancybox({
+			padding		: 0,
+			preload		: 5
+		});
+	});
+</script>
+
+<% provide(:title, "Listing: #{@listing.title}") %>
+
+<h1><%= @listing.title %></h1>
+
+<div class="update-listing">
+	<% if current_user && @listing.user_id == current_user.id %>
+		<%= link_to "Update Listing", edit_listing_path(@listing), class: "btn btn-large btn-warning" %>
+	<% end %>
+</div>
+
+<section class="listing-details">
+	<div class="listing-price">
+		Price: <%= number_to_currency(@listing.price, :unit => '$') %>
+	</div>
+	<div class="listing-location">
+		<h3>Location</h3>
+		<%= "#{@listing.city}, #{@listing.state}" %>
+	</div>
+	<div class="contact-details">
+		<%= "<h3>Contact Information</h3>".html_safe if @listing.show_email? || @listing.show_phones? %>
+		<div class="contact-email">
+			<%= "<strong>Email:</strong> #{@listing.email}".html_safe if @listing.show_email? %>
+		</div>
+		<div class="contact-phones">
+			<% if @listing.show_phones? %>
+				<%= "<strong>Primary Number:</strong> #{number_to_phone(@listing.primary_phone, :area_code => true)}".html_safe if @listing.primary_phone? %>
+				<br />
+				<%= "<strong>Secondary Number:</strong> #{number_to_phone(@listing.primary_phone, :area_code => true)}".html_safe if @listing.secondary_phone? %>
+			<% end %>
+		</div>
+	</div>
+	<div class="listing-description">
+		<h3>Description</h3>
+		<%= @listing.description.html_safe %>
+	</div>
+</section>
+<% if !@listing_attachments.empty? %>
+	<section class="listing-attachments">
+		<h2>
+			Listing Images
+			<br />
+			<span class="note">(click image to see original size)</span>
+		</h2>
+		<% @listing_attachments.each do |a| %>
+			<div class="attachment">
+				<%= link_to image_tag(a.file.url, alt: a.title), a.file.url, title: a.title, class: "fancybox", rel: "group" %>
+			</div>
+		<% end %>
+	</section>
+<% end %>

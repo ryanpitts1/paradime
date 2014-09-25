@@ -1,0 +1,84 @@
+<%= nested_form_for @listing, html: { multipart: true } do |f| %>
+	<%= render 'shared/error_messages', :object => @listing %>
+	<div>
+		<%= f.label :title, "Title*" %>
+		<%= f.text_field :title, placeholder: "Listing Title", class: "input-massive" %>
+	</div>
+	<div>
+		<%= f.label :price, "Price*" %>
+		<div class="input-prepend">
+			<span class="add-on dollar">$</span><%= f.text_field :price, class: "input-with-icon input-medium", placeholder: "0.00" %>
+		</div>
+	</div>
+	<div>
+		<%= f.label :city, "City* (this is required to make it easier for users to find your listing)" %>
+		<%= f.text_field :city, class: "input-xlarge", placeholder: "City" %>
+	</div>
+	<div>
+		<%= f.label :state, "State* (this is required to make it easier for users to find your listing)" %>
+		<%= f.select :state, us_states %>
+	</div>
+	<div>
+		<%= f.label :email, "Contact Email" %>
+		<%= f.email_field :email, placeholder: "email@domain.com", class: "input-large" %>
+	</div>
+	<div>
+		<%= f.check_box :show_email %> <%= f.label :show_email, "Make email visible?", class: "inline-input-label" %>
+		<br /><br />
+	</div>
+	<div>
+		<%= f.label :primary_phone, "Primary Phone" %>
+		<%= f.text_field :primary_phone, placeholder: "(555) 555-5555", class: "input-large", value: (number_to_phone(f.object.primary_phone, :area_code => true)) %>
+	</div>
+	<div>
+		<%= f.label :secondary_phone, "Secondary Phone" %>
+		<%= f.text_field :secondary_phone, placeholder: "(555) 555-5555", class: "input-large", value: (number_to_phone(f.object.primary_phone, :area_code => true)) %>
+	</div>
+	<div>
+		<%= f.check_box :show_phones %> <%= f.label :show_phones, "Make phones visible?", class: "inline-input-label" %>
+		<br /><br />
+	</div>
+	<div>
+		<%= f.label :description, "Description*" %>
+		<%= f.text_area :description, class: "tinymce" %>
+	</div>
+	<div class="listing-attachments">
+		<h3>Attached Images</h3>
+		<%= f.fields_for :attachments do |a| %>
+			<div class="row image-preview">
+				<% if a.object.file? %>
+					<%= a.label :file, "Current Image Preview" %>
+					<%= link_to image_tag(a.object.file.url, alt: a.object.title), a.object.file.url, title: a.object.title, class: "fancybox", rel: "group" %>
+				<% end %>
+			</div>
+			<div class="row">
+				<% if form_type == "new" %>
+					<%= a.label :file, "Upload Image" %>
+				<% else %>
+					<%= a.label :file, "Replace Image" %>
+				<% end %>
+				<%= a.file_field :file %>
+			</div>
+			<div class="row">
+				<%= a.label :title, "Caption" %>
+				<%= a.text_field :title, placeholder: "Image Caption", class: "input-massive" %>
+			</div>
+			<div class="row">
+				<%= a.link_to_remove "Remove Image", class: "btn btn-small btn-danger" %>
+			</div>
+		<% end %>
+		<%= f.link_to_add "Add Image", :attachments, class: "btn btn-small btn-success add-attachment" %>
+	</div>
+	<div>
+		<%= f.hidden_field :listing_owner, value: "#{current_user.email}" %>
+		<%= f.hidden_field :ip_at_creation, value: "#{current_user.current_sign_in_ip}" %>
+		<% if form_type == "new" %>
+			<%= f.submit "Publish Listing", class: "btn btn-success" %>
+		<% else %>
+			<%= f.submit "Update Listing", class: "btn btn-success" %>
+		<% end %>
+		<div class="btn-cancel">
+			<%= link_to "Cancel", :back %>
+		</div>
+	</div>
+<% end %>

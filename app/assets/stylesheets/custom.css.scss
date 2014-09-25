@@ -1,0 +1,494 @@
+@import "bootstrap_overrides";
+@import "bootstrap";
+
+
+/* mixins, variables, etc. */
+$grayMediumLight: #eaeaea;
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box; 
+  -webkit-box-sizing: border-box; 
+  box-sizing: border-box;
+}
+
+
+/* universal */
+html {
+  overflow-y: scroll;
+}
+
+.container, .navbar .container {
+  width: 1200px;
+}
+
+body > .container {
+  padding-top: 40px;
+  border-top: 2px solid $white;
+}
+
+body > .container.no-top-border {
+  border-top: none;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+  h1 {
+    margin-bottom: 10px;
+  }
+}
+
+.alternate-layout-content-wrapper {
+  width: 243px;
+  background-color: #ffffff;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  padding: 15px 25px 5px 25px;
+  @include border-radius(5px);
+  border: 1px solid $lightGray;
+  input[type="submit"] {
+    width: 100%;
+  }
+}
+
+.pagination {
+  float: left;
+}
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
+
+/* typography */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 24px;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: $grayLight;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+
+/* header */
+.navbar {
+  padding: 15px 0px 45px 0px;
+  margin-bottom: 0px;
+  .logo {
+    float: left;
+    margin-right: 10px;
+    font-size: 30px;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    padding-top: 9px;
+    font-weight: bold;
+    line-height: 1;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  .nav {
+    li {
+      padding-left: 10px;
+      a {
+        color: $linkColor;
+        text-shadow: none;
+        &:hover {
+          color: $navbarLinkColorHover;
+          background-color: #2d732d;
+          -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+          -moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+          box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+        }
+      }
+      ul li {
+        padding-left: 0px;
+      }
+    }
+    li.dropdown .dropdown-toggle {
+      .caret {
+        margin-top: 5px;
+        border-top-color: $linkColor;
+        border-bottom-color: $linkColor;
+      }
+      &:hover .caret {
+        border-top-color: #eee;
+        border-bottom-color: #eee;        
+      }
+    }
+    .active a {
+      background-color: #51a151;
+    }
+  }
+}
+
+
+/* footer */
+footer {
+  margin-top: 50px;
+  color: $grayLight;
+  .container {
+    padding-top: 10px;
+    border-top: 2px solid $white;
+    small { 
+      float: left; 
+    }
+    ul {
+      float: right;
+      list-style: none;
+      li {
+        float: left;
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+
+/* forms */
+.sign-in-links {
+  width: 243px;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color: $mediumGray;
+  font-size: 12px;
+}
+
+.input-prepend > .add-on {
+  padding: 7px 10px;
+}
+
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+  border: 1px solid $lightGray;
+  height: 36px;
+  padding: 7px;
+  height: auto !important;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+label {
+  font-weight: bold;
+}
+
+#error_explanation {
+  color: #f00;
+  padding-bottom: 20px;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .control-group;
+  @extend .error;
+  margin-bottom: 0;
+  display: inline;
+  input {
+    border-color: #b94a48;
+  }
+}
+
+textarea {
+  resize: vertical;
+}
+
+input[type="checkbox"], input[type="radio"] {
+  margin: -4px 0 0;
+}
+
+.inline-input-label {
+  display: inline;
+}
+
+input[type="submit"] {
+  margin-top: 15px;
+}
+
+.btn-cancel {
+  display: inline;
+  position: absolute;
+  margin: 20px 0px 0px 20px;
+}
+
+textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus {
+  border-color: rgba(81,161,81,0.8);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(81,161,81,.6);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(81,161,81,.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(81,161,81,.6);
+}
+
+.input-massive {
+  width: 700px;
+}
+
+
+/* listings new/edit pages */
+.listing-attachments {
+  width: 100%;
+  margin-top: 25px;
+  margin-bottom: 30px;
+  .fields {
+    margin-top: 15px;
+    padding: 10px 15px;
+    @include border-radius(5px);
+    &:nth-child(even) {
+      background-color: lighten($bodyBackground, 7%);
+    }
+    &:nth-child(odd) {
+      background-color: darken($bodyBackground, 7%);
+    }
+    .row {
+      margin-left: 0;
+      padding: 5px;
+      &.image-preview img {
+        max-width: 500px;
+        max-height: 350px;
+        padding-bottom: 20px;
+      }
+    }
+  }
+  .add-attachment {
+    margin-top: 10px;
+  }
+}
+
+
+/* listings index page */
+.advanced-search {
+  width: 100%;
+  h3 {
+    margin: 0px 0px 15px 0px;
+  }
+  .search-fields {
+    text-align: left;
+    label {
+      display: inline;
+    }
+    input[type="text"], input[type="number"] {
+      display: inline;
+      padding: 3px 4px;
+      margin-top: 14px;
+    }
+    .search-title, .search-description, .search-price-range, .search-location {
+      margin-top: -14px;
+    }
+    input[type="submit"] {
+      float: left;
+      margin-top: 0;
+    }
+    .search-sort-by {
+      float: left;
+      font-weight: bold;
+      margin: 5px 0px 0px 20px;
+      a {
+        padding: 0px 7px;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+.listings-list {
+  float: left;
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  @include border-radius(5px);
+  article {
+    overflow: auto;
+    &:nth-child(even) {
+      background-color: lighten($bodyBackground, 5%);
+    }
+    &:nth-child(odd) {
+      background-color: darken($bodyBackground, 5%);
+    }
+    .listing {
+      width: 100%;
+      float: left;
+      font-size: 16px;
+      .listing-title {
+        float: left;
+        max-width: 850px;
+        font-weight: bold;
+        line-height: 19px;
+        color: $linkColor;
+        margin: 15px 0px 15px 15px;
+        .listing-photo{
+          float: left;
+          margin: -1px 5px 0px 0px;
+        }
+        .listing-price {
+          margin-left: 5px;
+          color: $textColor;
+        }
+        .listing-location {
+          color: $mediumGray;
+          font-size: 14px;
+        }
+      }
+      .listing-date {
+        float: right;
+        margin: 15px 15px 15px 0px;
+      }
+      &:hover {
+        background-color: $linkColor;
+        color: white;
+        .listing-title {
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+
+/* manage listings */
+.manage-listings-list {
+  list-style: none;
+  margin: 0;
+  @include border-radius(5px);
+  article {
+    overflow: auto;
+    &:nth-child(even) {
+      background-color: lighten($bodyBackground, 5%);
+    }
+    &:nth-child(odd) {
+      background-color: darken($bodyBackground, 5%);
+    }
+    .manage-listing-title {
+      float: left;
+      max-width: 800px;
+      font-weight: bold;
+      line-height: 19px;
+      color: $linkColor;
+      margin: 15px 0px 15px 15px;
+      .manage-listing {
+        width: 100%;
+        float: left;
+        font-size: 16px;
+        .manage-listing-photo{
+          float: left;
+          margin: -1px 5px 0px 0px;
+        }
+        .manage-listing-price {
+          margin-left: 5px;
+          color: $textColor;
+        }
+      }
+    }
+    .manage-listing-date {
+      float: right;
+      margin: 15px 15px 15px 0px;
+    }
+    .manage-listing-actions {
+      float: right;
+      margin: 12px 15px 10px 0px;
+    }
+    &:hover {
+      background-color: $linkColor;
+      color: white;
+      .manage-listing-title > .manage-listing {
+        color: white;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+
+/* listing show page */
+.update-listing {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 15px;
+}
+.listing-details {
+  padding-top: 20px;
+  .listing-price {
+    font-size: 26px;
+    font-weight: bold;
+    color: $green;
+  }
+  .listing-location {
+    margin-left: 15px;
+    margin-top: 30px;
+    font-size: 16px;
+    h3 {
+      margin-left: -15px;
+    }
+  }
+  .contact-details {
+    margin-left: 15px;
+    margin-top: 30px;
+    .contact-email {
+      font-size: 16px;
+    }
+    .contact-phones {
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    h3 {
+      margin-left: -15px;
+    }
+  }
+  .listing-description {
+    margin-left: 15px;
+    margin-top: 30px;
+    font-size: 14px;
+    .listing-description-title {
+      font-weight: bold;
+      font-size: 16px;
+    }
+    h3 {
+      margin-left: -15px;
+    }
+  }
+}
+.listing-attachments {
+  padding-top: 25px;
+  h2 .note {
+    font-size: 14px;
+  }
+  .attachment {
+    float: left;
+    margin: 0px 20px 20px 0px;
+    img {
+      max-width: 350px;
+      max-height: 350px;
+    }
+  }
+}

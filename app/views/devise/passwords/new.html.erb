@@ -1,0 +1,18 @@
+<% provide(:title, 'Forgot Your Password') %>
+
+<div class="alternate-layout-content-wrapper">
+	<h2>Forgot your password?</h2>
+	<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+		<%= render 'shared/error_messages', :object => @user %>
+		<div class="input-prepend">
+			<span class="add-on"><i class="icon-envelope"></i></span>
+			<%= f.email_field :email, placeholder: "Email Address" %>
+		</div>
+		<div>
+			<%= f.submit "Send Instructions", class: "btn btn-large btn-success" %>
+		</div>
+	<% end %>
+</div>
+<div class="sign-in-links">
+	<%= render "devise/shared/links" %>
+</div>

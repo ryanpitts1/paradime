@@ -1,0 +1,35 @@
+<% provide(:title, 'Edit Profile') %>
+
+<h2>Edit Profile</h2>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+	<%= render 'shared/error_messages', :object => @user %>
+	<div>
+		<%= f.label :name %>
+		<%= f.text_field :name, placeholder: "Name" %>
+	</div>
+	<div>
+		<%= f.label :email %>
+		<%= f.email_field :email, placeholder: "Email" %>
+	</div>
+	<div>
+		<%= f.label :password, "Password (leave blank to keep the same)" %>
+		<%= f.password_field :password, placeholder: "Password" %>
+	</div>
+	<div>
+		<%= f.label :password_confirmation, "Confirm Password" %>
+		<%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
+	</div>
+	<div>
+		<%= f.label :current_password, "Current Password (enter password to save changes)" %>
+		<%= f.password_field :current_password, placeholder: "Current Password" %>
+	</div>
+	<div>
+		<%= f.submit "Update", class: "btn btn-success" %>
+		<div class="btn-cancel">
+			<%= link_to "Cancel", :back %>
+		</div>
+	</div>
+<% end %>
+<br />
+<h3>Close Your Account</h3>
+<p>Unhappy with Paradime? <%= link_to "Close your account", registration_path(resource_name), :data => { :confirm => "Are you sure you want to close your account? This can not be reversed!" }, :method => :delete %>.</p>

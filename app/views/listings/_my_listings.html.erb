@@ -1,0 +1,29 @@
+<%= will_paginate %>
+	<section class="manage-listings-list">
+		<% @listings.each do |listing| %>
+			<article>
+				<div class="manage-listing-title">
+					<a class="manage-listing" href="<%= listing_path(listing) %>">
+						<% if listing.photos.to_i == 1 %>
+							<div class="manage-listing-photo">
+								<%= image_tag("photo.png") %>
+							</div>
+						<% elsif listing.photos.to_i > 2 %>
+							<div class="manage-listing-photo">
+								<%= image_tag("photos.png") %>
+							</div>
+						<% end %>
+						<%= listing.title %> <span class="manage-listing-price">(<%= number_to_currency(listing.price, :unit => '$') %>)</span>
+					</a>
+				</div>
+				<div class="manage-listing-actions">
+					<%= link_to "Update", edit_listing_path(listing), class: "btn btn-warning btn-small" %>
+					<%= link_to "Delete", listing, method: :delete, data: { confirm: "Are you sure you want to delete this listing? (cannot be reversed)" }, class: "btn btn-danger btn-small" %>
+				</div>
+				<div class="manage-listing-date">
+					<%= time_ago_in_words(listing.created_at) %> ago
+				</div>
+			</article>
+		<% end %>
+	</section>
+<%= will_paginate %>

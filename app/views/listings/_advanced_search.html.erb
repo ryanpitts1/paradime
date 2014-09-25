@@ -1,0 +1,34 @@
+<div class="advanced-search well">
+	<h3>Advanced Search</h3>
+	<%= search_form_for @search do |f| %>
+		<div class="search-fields">
+			<div class="search-field search-title">
+				<%= f.label :title_cont, "Title Contains" %>
+				<%= f.text_field :title_cont, placeholder: "Title", class: "input-xxlarge" %>
+			</div>
+			<div class="search-field search-description">
+				<%= f.label :description_cont, "Description Contains" %>
+				<%= f.text_field :description_cont, placeholder: "Description", class: "input-xxlarge" %>
+			</div>
+			<div class="search-field search-price-range">
+				<%= f.label :price_gteq, "Price Range" %>
+				<%= f.text_field :price_gteq, placeholder: "Minimum", class: "input-medium" %>
+				<%= f.label :price_lteq, " - " %>
+				<%= f.text_field :price_lteq, placeholder: "Maximum", class: "input-medium" %>
+			</div>
+			<div class="search-field search-location">
+				<%= f.label :location, "Search in" %>
+				<%= text_field_tag :location, params[:location], placeholder: "City, State", class: "input-xlarge" %>
+				<%= f.label :within, "within" %>
+				<%= number_field_tag :within, params[:within], placeholder: "20", class: "input-small" %> <strong>miles</strong>
+			</div>
+			<div class="search-actions">
+				<%= f.submit "Search", class: "btn btn-success btn-medium" %>
+			</div>
+			<div class="search-sort-by">
+				Sort by <%= sort_link @search, :title %> | <%= sort_link @search, :price %> | <%= sort_link @search, :created_at, "Date Listed" %>
+			</div>
+		</div>
+	<% end %>
+	<div class="clearfix"></div>
+</div>

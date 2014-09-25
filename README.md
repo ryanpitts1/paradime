@@ -1,0 +1,4 @@
+# Paradime (unfinished)
+
+### Purpose of This Application
+This application was built as a personal project. This was one of the first projects that I built while learning ROR. I used this application to give myself a project to help me learn new things in Rails. Some of the key features that this application has is the ability to save and manage files stored on Amazon's S3 cloud storage. Carrierwave and Fog are used to take care of this. The idea behind Paradime was to build a Craigslist like site that had everything that Craigslist had but with a few additions.  The additions were things like a Q&A section on a given posting so users can ask questions about a listing, see what other people have asked, and let the listings owner manage those questions with limiting duplicate questions.  This site was never intended to be a direct competitor or even "go-live". It was simply built for a learning exercise.

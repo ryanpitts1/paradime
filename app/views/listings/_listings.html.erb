@@ -1,0 +1,25 @@
+<%= will_paginate %>
+	<section class="listings-list">
+		<% @listings.each do |listing| %>
+			<article>
+				<a class="listing" href="<%= listing_path(listing) %>">
+					<div class="listing-title">
+						<% if listing.photos.to_i == 1 %>
+							<div class="listing-photo">
+								<%= image_tag("photo.png") %>
+							</div>
+						<% elsif listing.photos.to_i > 2 %>
+							<div class="listing-photo">
+								<%= image_tag("photos.png") %>
+							</div>
+						<% end %>
+						<%= listing.title %> <span class="listing-price">(<%= number_to_currency(listing.price, :unit => '$') %>)</span> <span class="listing-location"><%= "#{listing.city}, #{listing.state}" %></span>
+					</div>
+					<div class="listing-date">
+						<%= time_ago_in_words(listing.created_at) %> ago
+					</div>
+				</a>
+			</article>
+		<% end %>
+	</section>
+<%= will_paginate %>

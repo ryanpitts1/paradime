@@ -1,0 +1,11 @@
+<div class="center hero-unit">
+	<h1>Paradime</h1>
+	<h2>
+		Think different. Sell different.
+	</h2>
+	<% if user_signed_in? %>
+		<%= link_to "Post a new listing!", new_listing_path, class: "btn btn-large btn-success" %>
+	<% else %>
+		<%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-large btn-success" %>
+	<% end %>
+</div>

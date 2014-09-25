@@ -1,0 +1,13 @@
+<% provide(:title, 'Listings') %>
+
+<h1>Listings</h1>
+
+<%= render 'advanced_search'%>
+
+<% if @listings.empty? %>
+	<h2>Nothing has been listed yet.</h2>
+<% else %>
+	<div id="listings">
+		<%= render 'listings' %>
+	</div>
+<% end %>
